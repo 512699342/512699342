@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+
+	<!--设置过期时间设置0为直接过期并清除缓存-->
+	<meta http-equiv="Expires" content="0">
+	<!--设置不缓存页面-->
+	<meta http-equiv="Pragma" content="no-cache">
+	<!--设置不修改消息存储-->
+	<meta http-equiv="Cache-control" content="no-cache">
+	<!--同上-->
+	<meta http-equiv="Cache" content="no-cache">
+
+	<script type="text/javascript" src="../web_data/assets/js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="../web_data/assets/js/alter_user.js"></script>
+	<link type="text/css" rel="stylesheet" href="../web_data/assets/css/alter_user.css">
+
+
+	<title>EUHT运维管理系统--修改用户信息</title>
+
+
+</head>
+
+<body>
+	<div class="xiao-container">
+		<div class="xiao-register-box">
+			<div class="xiao-title-box">
+				<span>修改用户信息</span>
+			</div>
+			<form action="#" method="post">
+				<div class="xiao-userName-box">
+					<span class="xiao-require">*</span>
+					<label for="userName">用户名</label>
+					<div class="xiao-userName-input">
+						<input type="text" id="userName" name="userName" disabled="disabled"
+							placeholder="请输入用户名 长度:5-12个字符" />
+					</div>
+				</div>
+
+				<div class="xiao-userOldPassword-box">
+					<span class="xiao-require">*</span>
+					<label for="userOldPassword">原密码</label>
+					<div class="xiao-userOldPassword-input">
+						<input type="password" id="userOldPassword" name="userOldPassword" placeholder="请输入原密码" />
+					</div>
+					<label id="lb_userOldPassword" class="xiao-require"></label>
+				</div>
+
+				<div class="xiao-userPassword-box">
+					<span class="xiao-require">*</span>
+					<label for="userPassword">新密码</label>
+					<div class="xiao-userPassword-input">
+						<input type="password" id="userPassword" name="userPassword" placeholder="请输入密码 长度:5-12个字符" />
+					</div>
+				</div>
+
+				<div class="xiao-userRePassword-box">
+					<span class="xiao-require">*</span>
+					<label for="userRePassword">确认密码</label>
+					<div class="xiao-userRePassword-input">
+						<input type="password" id="userRePassword" name="userRePassword" placeholder="请重复输入密码" />
+					</div>
+				</div>
+
+				<div class="xiao-fullName-box">
+					<span class="xiao-require">*</span>
+					<label for="fullName">姓名</label>
+					<div class="xiao-fullName-input">
+						<input type="text" id="fullName" name="fullName" placeholder="请输入您的姓名，如：张三" />
+					</div>
+				</div>
+
+
+				<div class="xiao-userPhone-box">
+					<span class="xiao-require"> </span>
+					<label for="userPhone">手机号码</label>
+					<div class="xiao-userPhone-input">
+						<input type="text" id="userPhone" name="userPhone" placeholder="请输入您的手机号码，11位有效数字" />
+					</div>
+				</div>
+
+				<div class="xiao-userEmail-box">
+					<span class="xiao-require"> </span>
+					<label for="userEmail">电子邮箱</label>
+					<div class="xiao-userEmail-input">
+						<input type="text" id="userEmail" name="userEmail" placeholder="请输入您的邮箱地址，如：123@qq.com" />
+					</div>
+				</div>
+
+				<div class="xiao-submit-box">
+					<input id="xiao-submit-button" type="button" onclick="alter_user()" value="修改" style="cursor:pointer">
+				</div>
+
+				<div class="xiao-return-box">
+					<input id="xiao-return-button" type="button" onclick="return_index()" value="返回" style="cursor:pointer">
+				</div>
+
+				<!-- <div class="xiao-goLogin-box"> -->
+				<!-- <a href="#" style="text-decoration: none;">已有账号？去登录</a> -->
+				<!-- </div> -->
+			</form>
+		</div>
+	</div>
+</body>
+
+</html>

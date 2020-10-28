@@ -1,0 +1,205 @@
+.protocol-div {
+    text-align: center;
+    margin: auto;
+    margin-top: 0.4rem;
+
+    font-size: 0.4rem;
+    color: rgba(255, 255, 255, 1);
+
+    box-sizing: border-box;
+}
+
+.popup-bg-div {
+    width: 100%;
+    height: 100%;
+    /*隐藏背景层*/
+    position: absolute;
+    /*绝对定位*/
+    background-color:rgba(0, 0, 0, 0.6);
+    /*设置不透明度，即可以看到层下面的内容，但是由于层的遮挡，背景是不可以进行操作的*/
+
+    /* display: none; */
+    display: none;
+    z-index: 9;
+}
+
+.popup-main-div {
+    position: absolute;
+    width: 6.96rem;
+    height: 9.4rem;
+
+    /*利用绝对定位进行居中*/
+    margin: auto;
+    top: 0; left: 0; bottom: 0; right: 0;
+
+    border-radius: 0.13rem;
+    outline: none;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 1);
+    /* display: none; */
+    display: block;
+
+    z-index: 9;
+}
+
+.popup-title-text {
+    width: 3.0rem;
+    height: 0.7rem;
+
+    margin: auto;
+    font-size: 0.6rem;
+
+    text-align:center;
+
+    display:block;
+
+    color: #3B72FD;
+}
+
+.tab-area {
+    width: 100%;
+
+    margin: auto;
+}
+
+.user-agreement-tab {
+    width: 6.1rem;
+    height: 5.64rem;
+
+    margin-left: 0.13rem;
+
+    border: 0rem;
+    border-radius: 0.4rem;
+
+    background-color: rgba(59, 114, 253, 1);
+
+    font-size: 0.32rem;
+    color:white;
+
+    outline: none;
+}
+
+.privacy-policy-tab {
+    width: 6.1rem;
+    height: 5.64rem;
+
+    margin-left: 0.2rem;
+
+    border: 0rem;
+    border-radius: 0.4rem;
+
+    background-color: rgba(59, 114, 253, 1);
+
+    font-size: 0.32rem;
+    color:white;
+
+    outline: none;
+}
+
+.user-agreement-tab:hover {
+    background-color: rgb(38, 80, 187);
+}
+
+.user-agreement-tab:active {
+    background-color: rgb(23, 49, 116);
+}
+
+.privacy-policy-tab:hover {
+    background-color: rgb(38, 80, 187);
+}
+
+.privacy-policy-tab:active {
+    background-color: rgb(23, 49, 116);
+}
+
+
+.popup-text-div {
+    width: 6.96rem;
+    height: 7rem;
+
+    margin-top: 0.13rem;
+    margin-bottom: 0.16rem;
+
+    padding-left: 0.11rem;
+    padding-right: 0.41rem;
+    padding-top: 0.11rem;
+    padding-bottom: 0.11rem;
+
+    overflow: auto;
+
+    word-wrap:break-word;
+    word-break:break-all;
+
+    border-top-style: groove;
+    border-right-style: groove;
+    border-bottom-style: groove;
+    border-left-style: groove;
+    border: 0.013rem solid rgba(229, 229, 229, 1);
+}
+
+
+.user-agreement-text {
+    margin-left: 0.11rem;
+    margin-right: 0.41rem;
+    margin-top: 0.11rem;
+    margin-bottom: 0.11rem;
+
+    display: none;
+}
+
+.privacy-policy-text {
+    margin-left: 0.11rem;
+    margin-right: 0.41rem;
+    margin-top: 0.11rem;
+    margin-bottom: 0.11rem;
+
+    display: none;
+}
+
+
+.popup-btn-div {
+    width: 1.73rem;
+    height: 0.53rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 0.16rem;
+
+}
+
+.btn-area {
+    text-align: center;
+}
+
+.popup-btn {
+    width: 3.2rem;
+    height: 1.0rem;
+    border: 0rem;
+    border-radius: 0.4rem;
+    position: absolute;
+    margin:auto;
+    left:0;
+    right:0;
+    outline: none;
+    font-size: 0.42rem;
+    color: white;
+
+
+    background-color: rgba(59, 114, 253, 1);
+}
+
+.popup-btn:hover {
+    background-color: rgb(38, 80, 187);
+}
+
+.popup-btn:active {
+    background-color: rgb(23, 49, 116);
+}
+
+.protocol-btn {
+    color: white;
+    background-color: rgba(59, 114, 253, 1);
+    border: 0px none;  //去边框
+    font-family: "宋体";
+    font-size: 0.4rem;
+    text-decoration:underline;  //加下划线
+}

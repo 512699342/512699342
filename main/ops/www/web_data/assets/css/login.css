@@ -1,0 +1,64 @@
+*all {
+    margin: 0;
+    padding: 0;
+}
+
+div.inner,
+table {
+    position: absolute;
+}
+
+body {
+    background-image: url(../images/pic_login_bg.jpg);
+    background-size: 100%;
+}
+
+.outer {
+    height: 100%;
+}
+
+.inner {
+    border: 5px solid rgba(255, 255, 255, 1);
+    border-radius: 20px;
+    width: 370px;
+    height: 340px;
+    top: 40%;
+    left: 76%;
+    transform: translate(-50%, -50%);
+    box-shadow: 11px 11px 11px rgba(50, 50, 50, 1); ///边框阴影
+}
+
+.table {
+    top: 7%;
+    left: 12%;
+   //border: solid;
+    width: 300px;
+    height: 190px;
+    border-spacing: 7px;
+}
+
+.under {
+    position: fixed;
+    left: 0px;
+    bottom: 30px;
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+}
+
+.Time {
+    top: 65%;
+    left: 62%;
+    position: fixed;
+    width: 400px;
+    text-align: right;
+}
+
+.TEXT {
+    height: 72%;
+    width: 200px;
+}
+
+a {
+    text-decoration: none
+}

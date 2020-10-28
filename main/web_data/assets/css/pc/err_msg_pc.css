@@ -1,0 +1,126 @@
+.err-bg-area {
+    width: 100%;
+    height: 100%;
+    /*隐藏背景层*/
+    position: absolute;
+    /*绝对定位*/
+    background-color: black;
+    opacity: 0.6;
+    /*设置不透明度，即可以看到层下面的内容，但是由于层的遮挡，背景是不可以进行操作的*/
+
+    display: none;
+    z-index: 9;
+}
+/*隐藏逻辑业务窗口层*/
+.err-main-area {
+    position: absolute;
+    width: 300px;
+    height: 150px;
+
+    /*利用绝对定位进行居中*/
+    margin: auto;
+    top: 0; left: 0; bottom: 0; right: 0;
+
+    border-radius: 10px;
+    outline: none;
+    overflow: hidden;
+    background-color: white;
+    display: none;
+
+    z-index: 9;
+}
+
+.err-text-div {
+    width: 280px;
+    height: 75px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 12px;
+    text-align: center;
+
+    overflow: hidden;
+
+    border-top-style: groove;
+    border-right-style: groove;
+    border-bottom-style: groove;
+    border-left-style: groove;
+    border: 1px solid rgba(59, 114, 253, 0);
+
+}
+
+.err-text {
+    margin-top: 30px;
+    font-size: 14px;
+    display: none;
+}
+
+/* .name-err-text {
+    margin-top: 30px;
+    font-size: 14px;
+    display: none;
+}
+
+.phone-err-text {
+    margin-top: 30px;
+    font-size: 14px;
+    display: none;
+}
+
+.captcha-err-text {
+    margin-top: 30px;
+    font-size: 14px;
+    display: none;
+}
+
+.register-err-no-count {
+    margin-top: 30px;
+    font-size: 14px;
+    display: none;
+}
+
+.register-err-text-name {
+    margin-top: 30px;
+    font-size: 14px;
+    display: none;
+}
+
+.register-err-text-captcha {
+    margin-top: 30px;
+    font-size: 14px;
+    display: none;
+}
+
+.register-err-text-unknow {
+    margin-top: 30px;
+    font-size: 14px;
+    display: none;
+} */
+
+.err-btn-div {
+    width: 130px;
+    height: 40px;
+    margin-left: 85px;
+    margin-right: 85px;
+    margin-bottom: 12px;
+}
+
+.err-btn {
+    width: 130px;
+    height: 40px;
+    border: 0px;
+    border-radius: 30px;
+    outline: none;
+    font-size: 16px;
+    color: white;
+
+    background-color: rgba(59, 114, 253, 1);
+}
+
+.err-btn:hover {
+    background-color: rgb(38, 80, 187);
+}
+
+.err-btn:active {
+    background-color: rgb(23, 49, 116);
+}

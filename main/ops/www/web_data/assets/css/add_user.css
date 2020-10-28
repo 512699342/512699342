@@ -1,0 +1,230 @@
+body,
+input {
+	margin: 0;
+	padding: 0;
+	background: #CCFFCC;
+}
+
+input {
+	display: inline-block;
+	background: #fff;
+}
+
+.xiao-container {
+	width: 100%;
+}
+
+.xiao-register-box {
+	position: relative;
+	height: 800px;
+	width: 800px;
+	top: 50px;
+	margin: 0 auto;
+	z-index: 99999;
+	background: #ffffff;
+	border: 7px solid #ccc;
+}
+
+.xiao-title-box {
+	position: absolute;
+	width: 300px;
+	height: 50px;
+	margin-left: 250px;
+	margin-top: 5px;
+	text-align: center;
+	font-size: 28px;
+	font-weight: 800;
+	color: #000000;
+	line-height: 50px;
+}
+
+.xiao-userName-box {
+	position: absolute;
+	width: 420px;
+	height: 40px;
+	line-height: 40px;
+	margin-top: 100px;
+	margin-left: 160px;
+	font-weight: 700;
+}
+
+.xiao-userName-input {
+	display: inline-block;
+	margin-left: 45px;
+	/*background: green;*/
+}
+
+#userName {
+	height: 35px;
+	width: 290px;
+	border: 2px solid #ccc;
+	border-radius: 5px;
+}
+
+.xiao-userPassword-box {
+	position: absolute;
+	width: 420px;
+	height: 40px;
+	line-height: 40px;
+	margin-top: 180px;
+	margin-left: 160px;
+	font-weight: 700;
+}
+
+.xiao-userPassword-input {
+	display: inline-block;
+	margin-left: 61px;
+}
+
+#userPassword {
+	height: 35px;
+	width: 290px;
+	border: 2px solid #ccc;
+	border-radius: 5px;
+}
+
+.xiao-userRePassword-box {
+	position: absolute;
+	width: 420px;
+	height: 40px;
+	line-height: 40px;
+	margin-top: 260px;
+	margin-left: 160px;
+	font-weight: 700;
+}
+
+.xiao-userRePassword-input {
+	display: inline-block;
+	margin-left: 28px;
+}
+
+#userRePassword {
+	height: 35px;
+	width: 290px;
+	border: 2px solid #ccc;
+	border-radius: 5px;
+}
+
+.xiao-userPhone-box {
+	position: absolute;
+	width: 420px;
+	height: 40px;
+	line-height: 40px;
+	margin-top: 420px;
+	margin-left: 160px;
+	font-weight: 700;
+}
+
+.xiao-userPhone-input {
+	display: inline-block;
+	margin-left: 32px;
+}
+
+#userPhone {
+	height: 35px;
+	width: 290px;
+	border: 2px solid #ccc;
+	border-radius: 5px;
+}
+
+.xiao-userEmail-box {
+	position: absolute;
+	width: 420px;
+	height: 40px;
+	line-height: 40px;
+	margin-top: 500px;
+	margin-left: 160px;
+	font-weight: 700;
+}
+
+.xiao-userEmail-input {
+	display: inline-block;
+	margin-left: 32px;
+}
+
+#userEmail {
+	height: 35px;
+	width: 290px;
+	border: 2px solid #ccc;
+	border-radius: 5px;
+}
+
+
+.xiao-fullName-box {
+	position: absolute;
+	width: 420px;
+	height: 40px;
+	line-height: 40px;
+	margin-top: 340px;
+	margin-left: 160px;
+	font-weight: 700;
+}
+
+.xiao-fullName-input {
+	display: inline-block;
+	margin-left: 58px;
+}
+
+#fullName {
+	height: 35px;
+	width: 290px;
+	border: 2px solid #ccc;
+	border-radius: 5px;
+}
+
+.xiao-userGender-box {
+	position: absolute;
+	width: 420px;
+	height: 40px;
+	line-height: 40px;
+	margin-top: 500px;
+	margin-left: 82px;
+	font-weight: 700;
+}
+
+.xiao-userGender-input {
+	display: inline-block;
+	margin-left: 62px;
+}
+
+.xiao-require {
+	color: red;
+}
+
+.xiao-submit-box {
+	position: absolute;
+	width: 80px;
+	height: 40px;
+	line-height: 40px;
+	margin-top: 580px;
+	margin-left: 260px;
+	border-radius: 5px;
+	background: grey;
+}
+
+#xiao-submit-button {
+	display: inline-block;
+	width: 80px;
+	height: 40px;
+	border-radius: 5px;
+	background: #CCFFFF;
+}
+
+.xiao-return-box {
+	position: absolute;
+	width: 80px;
+	height: 40px;
+	line-height: 40px;
+	margin-top: 580px;
+	margin-left: 380px;
+	border-radius: 5px;
+	background: grey;
+}
+
+#xiao-return-button {
+	display: inline-block;
+	width: 80px;
+	height: 40px;
+	border-radius: 5px;
+	background: #CCFFFF;
+}

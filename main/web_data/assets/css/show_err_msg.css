@@ -1,0 +1,112 @@
+.err_bg_div {
+    /*隐藏背景层*/
+    position: absolute;
+    /*绝对定位*/
+    background-color: black;
+    opacity: 0.6;
+    /*设置不透明度，即可以看到层下面的内容，但是由于层的遮挡，背景是不可以进行操作的*/
+    display: none;
+}
+
+.err_main_div {
+    /*隐藏逻辑业务窗口层*/
+    position: absolute;
+    /*绝对定位*/
+    width: 300px;
+    height: 150px;
+    border-radius: 10px;
+    outline: none;
+    overflow: hidden;
+    background-color: white;
+    display: none;
+}
+
+.err_text_div {
+    width: 280px;
+    height: 75px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 12px;
+    text-align: center;
+
+    overflow: hidden;
+
+    border-top-style: groove;
+    border-right-style: groove;
+    border-bottom-style: groove;
+    border-left-style: groove;
+    border: 1px solid rgba(59, 114, 253, 0);
+
+}
+
+.name_err_text {
+    margin-top: 30px;
+    font-size: 14px;
+    display: none;
+}
+
+.phone_err_text {
+    margin-top: 30px;
+    font-size: 14px;
+    display: none;
+}
+
+.captcha_err_text {
+    margin-top: 30px;
+    font-size: 14px;
+    display: none;
+}
+
+.register_err_no_count {
+    margin-top: 30px;
+    font-size: 14px;
+    display: none;
+}
+
+.register_err_text_name {
+    margin-top: 30px;
+    font-size: 14px;
+    display: none;
+}
+
+.register_err_text_captcha {
+    margin-top: 30px;
+    font-size: 14px;
+    display: none;
+}
+
+.register_err_text_unknow {
+    margin-top: 30px;
+    font-size: 14px;
+    display: none;
+}
+
+.err_btn_div {
+    width: 130px;
+    height: 40px;
+    margin-left: 85px;
+    margin-right: 85px;
+    margin-bottom: 12px;
+
+}
+
+.err_btn {
+    width: 130px;
+    height: 40px;
+    border: 0px;
+    border-radius: 30px;
+    outline: none;
+    font-size: 16px;
+    color: white;
+
+    background-color: rgba(59, 114, 253, 1);
+}
+
+.err_btn:hover {
+    background-color: rgb(38, 80, 187);
+}
+
+.err_btn:active {
+    background-color: rgb(23, 49, 116);
+}

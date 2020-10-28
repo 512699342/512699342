@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <!-- <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1, user-scalable=no"> -->
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta name="screen-orientation" content="portrait"><!-- uc强制竖屏 -->
+    <meta name="x5-orientation" content="portrait"><!-- QQ强制竖屏 -->
+    <meta content="description" name="description">
+    <meta name="google" content="notranslate" />
+    <meta content="Mashup templates have been developped by Orson.io team" name="author">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!--设置过期时间设置0为直接过期并清除缓存-->
+    <meta http-equiv="Expires" content="0">
+    <!--设置不缓存页面-->
+    <meta http-equiv="Pragma" content="no-cache">
+    <!--设置不修改消息存储-->
+    <meta http-equiv="Cache-control" content="no-cache">
+    <!--同上-->
+    <meta http-equiv="Cache" content="no-cache">
+
+    <!--Respond.js for IE 8 or less only -->
+    <!-- [if (lt IE 9) & (!IEMobile)]>
+    <script src="../web_data/assets/js/respond.min.js"></script>
+<![end if]-->
+
+    <link rel="stylesheet" media="screen and (min-width: 1200px)" href="../web_data/assets/css/pc/main_bg_env_pc.css">
+    <link rel="stylesheet" media="screen and (min-width: 1200px)" href="../web_data/assets/css/pc/main_widge_pc.css">
+    <link rel="stylesheet" media="screen and (min-width: 1200px)" href="../web_data/assets/css/pc/err_msg_pc.css">
+    <link rel="stylesheet" media="screen and (max-width: 1199px)" href="../web_data/assets/css/phone/main_bg_env_phone.css">
+    <link rel="stylesheet" media="screen and (max-width: 1199px)" href="../web_data/assets/css/phone/main_widge_phone.css">
+    <link rel="stylesheet" media="screen and (max-width: 1199px)" href="../web_data/assets/css/phone/err_msg_phone.css">
+
+    <script>
+        function IsPC() {
+            var userAgentInfo = navigator.userAgent;
+            //console.log(userAgentInfo);
+            var Agents = ["Android", "iPhone",
+                "SymbianOS", "Windows Phone",
+                "iPad", "iPod"
+            ];
+            var flag = true;
+            for (var v = 0; v < Agents.length; v++) {
+                if (userAgentInfo.indexOf(Agents[v]) > 0) {
+                    flag = false;
+                    break;
+                }
+            }
+            return flag;
+        }
+
+        res = IsPC();
+        if (res) {} else {
+            document.writeln("<script src=\"../web_data/assets/js/flexible/flexible.js\"><\/script>");
+            document.writeln("<script src=\"../web_data/assets/js/flexible/flexible_css.js\"><\/script>");
+        }
+    </script>
+
+    <title>EUHT无线网络</title>
+    <link rel="icon" type="image/x-ico" href="../web_data/assets/images/favicon.ico" />
+    <!-- <script type="text/javascript" src="../web_data/assets/js/choose_css_by_platform.js"></script> -->
+
+</head>
+
+<body>
+    <div class="main-area">
+
+        <div class="bg-img" id="bg_img">
+        </div>
+
+        <div class="title-area">
+            <div class="img-title"></div>
+            <div class="img-title-text"></div>
+            <div class="routersn-area">
+                <span class="routersn-text" id="routersn_text">NULL</span>
+            </div>
+        </div>
+
+        <div class="widge-area" id="WidgeArea">
+            <div class="input-widge-gap">
+                <input class="input-box name-input" id="name_input" placeholder="请输入真实姓名">
+            </div>
+
+            <div class="input-widge-gap">
+                <div class="input-btn">
+                    <input type="text" class="input-box-sp" id="phone_num_input"
+                        oninput="if(value.length>11)value=value.slice(0,11)"
+                        onkeyup="this.value=this.value.replace(/[^\d]/g,'');" placeholder="请输入手机号码" /><!--
+                        --><button class="captcha-btn" id="captcha_btn">获取验证码</button>
+                </div>
+            </div>
+
+            <div>
+                <input type="text" class="input-box captcha-input" id="captcha_input"
+                    oninput="if(value.length>4)value=value.slice(0,4)"
+                    onkeyup="this.value=this.value.replace(/[^\d]/g,'');" placeholder="请输入验证码" />
+            </div>
+
+            <div class="reg-btn-gap">
+                <button class="reg-btn" id="reg_button" disabled="disabled" onclick="jump()">获取上网资格</button>
+            </div>
+        </div>
+
+        <div class="bottom-area" id="tc_footer">
+            <div class="img-bottom"></div>
+            <p class="text-bottom">Copyright © 2019 TongChao Communication. All rights reserved.</p>
+        </div>
+    </div>
+
+    <div class="err-bg-area" id="err_bgDiv"></div>
+
+    <div class="err-main-area" id="err_fgDiv">
+        <div class="err-text-div" id="err_textDiv">
+            <p class="err-text" id="name_err">姓名不能为空</p>
+            <p class="err-text" id="phone_err">请输入正确的手机号码</p>
+            <p class="err-text" id="captcha_err">请输入四位验证码</p>
+            <p class="err-text" id="register_captcha_err">认证失败！请输入正确的验证码</p>
+            <p class="err-text" id="register_captcha_re_get">认证失败！请重新获取验证码</p>
+            <p class="err-text" id="register_name_err">认证失败！请输入正确的姓名</p>
+            <p class="err-text" id="register_parameter_err">校验信息有误！请重新连接WiFi</p>
+            <p class="err-text" id="register_realname_full_err">认证失败！手机号码已绑定3个终端</p>          
+            <p class="err-text" id="register_no_count_err">今日认证次数已用完，请明天再试</p>
+            <p class="err-text" id="register_max_router">此号码已达最大绑定数</p>
+            <p class="err-text" id="send_captcha_success">验证码发送成功，请在5分钟内输入</p>
+            <p class="err-text" id="send_captcha_fail">验证码发送失败，请稍后再试</p>
+        </div>
+        <div class="err-btn-div">
+            <input type="button" class="err-btn" id="err_back_btn" value="确定">
+        </div>
+
+    </div>
+</body>
+<script type="text/javascript" src="../web_data/assets/js/choose_css_by_platform.js"></script>
+<script type="text/javascript" src="../web_data/assets/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="../web_data/assets/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="../web_data/assets/js/showtip.js"></script>
+<script type="text/javascript" src="../web_data/assets/js/env_config.js"></script>
+<script type="text/javascript" src="../web_data/assets/js/register.js"></script>
+<script type="text/javascript" src="../web_data/assets/js/reg_btn_status.js"></script>
+
+<script type="text/javascript">
+    document.writeln('<script type="text/javascript" src="../web_data/assets/js/empty.js?time=' + new Date().getTime() +
+        '"><' + '/' + 'script>');
+</script>
+
+</html>

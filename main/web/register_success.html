@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta name="screen-orientation" content="portrait"><!-- uc强制竖屏 -->
+    <meta name="x5-orientation" content="portrait"><!-- QQ强制竖屏 -->
+    <meta content="description" name="description">
+    <meta name="google" content="notranslate" />
+    <meta content="Mashup templates have been developped by Orson.io team" name="author">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!--设置过期时间设置0为直接过期并清除缓存-->
+    <meta http-equiv="Expires" content="0">
+    <!--设置不缓存页面-->
+    <meta http-equiv="Pragma" content="no-cache">
+    <!--设置不修改消息存储-->
+    <meta http-equiv="Cache-control" content="no-cache">
+    <!--同上-->
+    <meta http-equiv="Cache" content="no-cache">
+
+    <!--Respond.js for IE 8 or less only -->
+    <!-- [if (lt IE 9) & (!IEMobile)]>
+    <script src="../web_data/assets/js/respond.min.js"></script>
+<![end if]-->
+
+    <link rel="stylesheet" media="screen and (min-width: 1200px)" href="../web_data/assets/css/pc/ok_pc.css">
+
+
+    <link rel="stylesheet" media="screen and (max-width: 1199px)" href="../web_data/assets/css/phone/ok_phone.css">
+
+    <script>
+        function IsPC() {
+            var userAgentInfo = navigator.userAgent;
+            //console.log(userAgentInfo);
+            var Agents = ["Android", "iPhone",
+                "SymbianOS", "Windows Phone",
+                "iPad", "iPod"
+            ];
+            var flag = true;
+            for (var v = 0; v < Agents.length; v++) {
+                if (userAgentInfo.indexOf(Agents[v]) > 0) {
+                    flag = false;
+                    break;
+                }
+            }
+            return flag;
+        }
+
+        res = IsPC();
+        if (res) {} else {
+            document.writeln("<script src=\"../web_data/assets/js/flexible/flexible.js\"><\/script>");
+            document.writeln("<script src=\"../web_data/assets/js/flexible/flexible_css.js\"><\/script>");
+        }
+    </script>
+
+    <title>认证成功</title>
+    <!-- <script type="text/javascript" src="../web_data/assets/js/choose_css_by_platform.js"></script> -->
+
+    <link rel="icon" type="image/x-ico" href="../web_data/assets/images/favicon.ico" />
+
+</head>
+
+<body>
+
+    <div class="s-main-area">
+
+        <div class="s-bg-img" id="bg_img"></div>
+        <div class="s-title-area">
+            <div class="s-img-title"></div>
+            <div class="s-img-title-text"></div>
+        </div>
+
+        <div class="ok-box-div-pc">
+            <div class="ok-text-area">
+                <img src="../web_data/assets/images/pc/ok.png" class="ok-img-pc">
+                <span class="ok-text-pc">认证成功</span>
+            </div>
+        </div>
+
+        <div class="s-bottom-area" id="tc_footer">
+            <div class="s-img-bottom"></div>
+            <p class="s-text-bottom">Copyright © 2019 TongChao Communication. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../web_data/assets/js/choose_css_by_platform.js"></script>
+<script type="text/javascript" src="../web_data/assets/js/env_config.js"></script>
+<script type="text/javascript" src="../web_data/assets/js/register_success_jump.js"></script>
+
+</html>
