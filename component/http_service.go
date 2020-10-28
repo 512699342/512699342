@@ -69,6 +69,7 @@ func SetHttpHandler() {
 		extrahttp.AddExtraHttp()
 	}
 	//主页处理，portal服务器路径
+	// test
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		defer func() {
 			auth.ErrorWrap(w)
