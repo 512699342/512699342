@@ -54,7 +54,7 @@ func Auth(userip net.IP, basip net.IP, timeout uint32, username, userpwd []byte)
 	logger.Debug("ac(ip:%s) user(ip:%s username:%s) : Cmcc portal Challenge start", basip.String(), userip.String(), string(username))
 	//logger.Debug("userip:%s username:%s ac:%s  Cmcc portal Challenge start", userip, username, basip)
 	if res, err = Challenge(userip, basip); err == nil {
-		if cres, ok := res.(portal.ChallengeRes); ok {
+		if cres, ok := res.(portal.ChallengeRes); ok {//如果路由已经分配好了Challenge
 			logger.Debug("ac(ip:%s) user(ip:%s username:%s) : Cmcc portal ChapAuth start", basip.String(), userip.String(), string(username))
 
 			//logger.Debug("userip:%s username:%s ac:%s  Cmcc portal ChapAuth start", userip, username, basip)

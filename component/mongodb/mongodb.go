@@ -289,7 +289,7 @@ func (handler *MongodbHandler) GetDevicesNumByPhone(phone string) (int, error) {
 	return Count, err
 }
 
-func (handler *MongodbHandler) GetDevicesNumByPhoneByTime(phone string) (int, error) {
+func (handler *MongodbHandler) GetDevicesNumByPhoneAndTime(phone string) (int, error) {
 	now := time.Now()
 	query := bson.M{"$and":[]bson.M{bson.M{"phone": phone},bson.M{"bindtime":bson.M{"$gt": now.Add(-BIND_SP_TIME)}}}}
 	Count, err := handler.findCount(*config.DbClientInfoCollection, query)
@@ -372,6 +372,16 @@ func (handler *MongodbHandler) GetRoutersByPhone(phone string) ([]Router, error)
 	err := handler.findAll(*config.DbRouterCollection, query, &routers)
 	return routers, err
 }
+
+func (handler *MongodbHandler) GetRoutersByPhoneAndTime(phone string) ([]Router, error) {
+	// query := bson.M{"account.phone": phone}
+	now := time.Now()
+	query := bson.M{"$and":[]bson.M{bson.M{"account.phone": phone},bson.M{"bindtime":bson.M{"$gt": now.Add(-BIND_SP_TIME)}}}}
+	routers := []Router{}
+	err := handler.findAll(*config.DbRouterCollection, query, &routers)
+	return routers, err
+}
+
 
 func (handler *MongodbHandler) UpdateRouter(mac string, router Router) error {
 	selector := bson.M{"mac": mac}

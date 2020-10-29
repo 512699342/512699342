@@ -127,6 +127,7 @@ func (a *AuthServer) login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	//根据端口号区分手机号绑定方式、Router绑定方式
+	// 如果是手机号绑定方式，用户需要绑定手机号，路由需要实名认证
 	if port == HTTP_PHONEAUTH_PORT {
 		relation.AcIp = acIP
 		relation.ClientIp = userIP
@@ -142,11 +143,13 @@ func (a *AuthServer) login(w http.ResponseWriter, r *http.Request) {
 			a.redirectRegisterPage(w, r)
 			return
 		}
-	} else {
+	} else {//如果是Router绑定方式
+		// 查询路由和终端关系表
 		relation, err = euht.GetRelationByClientMac(userMac)
 		logger.Info("ac(ip:%s) user(ip:%s mac:%s) router(sn:%s mac:%s) login request", acIP, userIP, userMac, relation.RouterSn, relation.RouterMac)
 		if err == nil {
-			if euht.IsRealName(relation.RouterMac) == false {
+			//如果路由与终端存在关系，那么查询该路由是否已经实名认证
+			if euht.IsRealName(relation.RouterMac) == false {//如果没有实名认证
 				logger.Warn("ac(ip:%s) user(ip:%s mac:%s) router(sn:%s mac:%s) : not real name", acIP, userIP, userMac, relation.RouterSn, relation.RouterMac)
 				//生成校验码，防止用户修改url参数发起注册
 				user_parameter := "nufront" + wlanacip + userIP + userMac + relation.RouterSn + relation.RouterMac
@@ -154,17 +157,19 @@ func (a *AuthServer) login(w http.ResponseWriter, r *http.Request) {
 				hash.Write([]byte(user_parameter))
 				checksum := hex.EncodeToString(hash.Sum(nil))
 				r.RequestURI = r.RequestURI + "&routersn=" + relation.RouterSn + "&routermac=" + relation.RouterMac + "&checksum=" + checksum
+				// 没有实名认证，生成校验码，发送路由信息和校验码，重定向到路由注册页面
 				a.redirectRegisterPage(w, r)
 				return
 			}
 		} else {
+			// 如果查询不到用户与路由的关系，代表是新用户连接到路由，这个时候要生成关系数据
 			err = nil
 			relation.AcIp = acIP
 			relation.ClientIp = userIP
 			relation.ClientMac = userMac
 		}
 	}
-
+	// 当用户通过认证之后，开始发送请求连接
 	//发起Portal请求
 	for i := 0; i < *config.CmccPortalTimes; i++ {
 		err = Auth(userip, acip, uint32(0), []byte(userMac), userPwd)

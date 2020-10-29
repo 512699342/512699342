@@ -257,7 +257,7 @@ func UpdateRSAKey(publicKey string, privateKey string) {
 //使用手机号码，查询绑定个数,如已绑定超过3个，返回true
 func IsMaxRegisterDevicesByPhone(phone string) bool {
 
-	devices_num, err := mongodb.Db_handler.GetDevicesNumByPhoneByTime(phone)
+	devices_num, err := mongodb.Db_handler.GetDevicesNumByPhoneAndTime(phone)
 
 	if err != nil {
 		logger.Error("GetDevicesNumByPhone err, phone: %s, err: %s", phone, err.Error())
