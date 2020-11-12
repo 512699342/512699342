@@ -806,3 +806,254 @@ func (ops *OPSServer) HandlePhoneBindNumInfo(w http.ResponseWriter, r *http.Requ
 		w.Write([]byte(response_json))
 	}
 }
+
+// 删除手机号绑定终端接口
+/*测试案例 
+http://localhost:8070/del_phone_bind_ca?phone=18712341234&caMac=50012
+*/
+func (ops *OPSServer)HandleDelPhoneBindCa(w http.ResponseWriter, r *http.Request) {
+	// 获取url参数
+	caMac := r.URL.Query().Get("caMac")
+	// acMac := r.URL.Query().Get("acMac")
+	phone := r.URL.Query().Get("phone")
+	// 定义返回结果处理，失败和成功
+	var err error
+	err_str := "err_no=1"
+	defer func(){
+		DisableBrowserCache(w)
+		if err != nil{
+			logger.Error("DeleteBind failed: ClientInfo(phone:%s clientMac:%s), %s",phone,caMac,err.Error())
+			w.WriteHeader(http.StatusBadRequest)
+			w.Write([]byte(err_str))
+		}else{
+			logger.Info("DeleteBind success: ClientInfo(phone:%s clientMac:%s)",phone,caMac)
+			w.WriteHeader(http.StatusOK)
+			w.Write([]byte("success"))
+		}
+	}()
+	// 验证用户权限(获取cookie，获取session，获取操作权限，判断，返回结果)
+	if userAuth(w, r) == false{
+		err_str = "err_no=2"
+		err = fmt.Errorf("DeleteBind failed, operator not admin")
+		return
+	}
+	// 验证今日删除次数（获取今日删除次数，判断时间，不是今日则为今日第一次，否则判断次数，小于加1，返回true）
+	userName := getUserName(w, r).(string)
+	if IsMaxDelCaByUser(userName) == false{
+		err_str = "err_no=3"
+		err = fmt.Errorf("DeleteBind failed, Today del is more than %d time",30)
+		return
+	}
+	// 验证数据合法性，待做
+	// 
+	// 删除用户数据,将用户数据从原数据库删除，转移到另外一个数据库
+	err = mongodb.Db_handler.RemoveClientInfoByMacAndPhone(*config.DbClientInfoCollection, caMac, phone)
+	if err != nil{
+		err_str = "err_no=4"
+	}
+}
+
+// 删除手机号绑定路由接口
+/*测试案例 
+http://localhost:8070/del_phone_bind_ac?phone=18712341233&acmac=1
+*/
+func (ops *OPSServer) HandleDelPhoneBindAc(w http.ResponseWriter, r *http.Request) {
+		// 获取url参数
+		acMac := r.URL.Query().Get("acmac")
+		// acMac := r.URL.Query().Get("acMac")
+		phone := r.URL.Query().Get("phone")
+		// 定义返回结果处理，失败和成功
+		var err error
+		err_str := "err_no=1"
+		defer func(){
+			DisableBrowserCache(w)
+			if err != nil{
+				logger.Error("DeleteBind failed: Router(phone:%s Mac:%s), %s",phone,acMac,err.Error())
+				w.WriteHeader(http.StatusBadRequest)
+				w.Write([]byte(err_str))
+			}else{
+				logger.Info("DeleteBind success: Router(phone:%s Mac:%s)",phone,acMac)
+				w.WriteHeader(http.StatusOK)
+				w.Write([]byte("success"))
+			}
+		}()
+		// 验证用户权限(获取cookie，获取session，获取操作权限，判断，返回结果)
+		if userAuth(w, r) == false{
+			err_str = "err_no=2"
+			err = fmt.Errorf("DeleteBind failed, operator not admin")
+			return
+		}
+		// 验证今日删除次数（获取今日删除次数，判断时间，不是今日则为今日第一次，否则判断次数，小于加1，返回true）
+		userName := getUserName(w, r).(string)
+		if IsMaxDelAcByUser(userName) == false{
+			err_str = "err_no=3"
+			err = fmt.Errorf("DeleteBind failed, Today del is more than %d time",30)
+			return
+		}
+		// 验证数据合法性，待做
+		// 
+		// 删除用户数据,将用户数据从原数据库删除，转移到另外一个数据库
+		err = mongodb.Db_handler.RemoveRouterByMacAndPhone(*config.DbClientInfoCollection, acMac, phone)
+		if err != nil{
+			err_str = "err_no=4"
+		}
+}
+
+// 删除根据手机号，删除手机号绑定的终端
+/*测试案例 
+http://localhost:8070/del_cabind_by_phone?phone=18712341233
+*/
+func (ops *OPSServer) HandleDelCaBindByPhone(w http.ResponseWriter, r *http.Request) {
+	// 获取url参数
+	phone := r.URL.Query().Get("phone")
+	// 定义返回结果处理，失败和成功
+	var err error
+	err_str := "err_no=1"
+	defer func(){
+		DisableBrowserCache(w)
+		if err != nil{
+			logger.Error("DeleteBind failed: phone:%s, %s",phone,err.Error())
+			w.WriteHeader(http.StatusBadRequest)
+			w.Write([]byte(err_str))
+		}else{
+			logger.Info("DeleteBind success: phone:%s",phone)
+			w.WriteHeader(http.StatusOK)
+			w.Write([]byte("success"))
+		}
+	}()
+	// 验证用户权限(获取cookie，获取session，获取操作权限，判断，返回结果)
+	if userAuth(w, r) == false{
+		err_str = "err_no=2"
+		err = fmt.Errorf("DeleteBind failed, operator not admin")
+		return
+	}
+	// 验证今日删除次数（获取今日删除次数，判断时间，不是今日则为今日第一次，否则判断次数，小于加1，返回true）
+	userName := getUserName(w, r).(string)
+	if IsMaxDelPhoneByUser(userName) == false{
+		err_str = "err_no=3"
+		err = fmt.Errorf("DeleteBind failed, Today del is more than %d time",30)
+		return
+	}
+	// 验证数据合法性，待做
+	// 
+	// 删除用户数据,将用户数据从原数据库删除，转移到另外一个数据库
+	err = mongodb.Db_handler.RemoveCaByPhone(*config.DbClientInfoCollection,phone)
+	if err != nil{
+		err_str = "err_no=4"
+	}
+}
+
+// 获取登录的用户名字
+func getUserName(w http.ResponseWriter, r *http.Request)(interface{}){
+	var sessionID = sessionMgr.CheckCookieValid(w, r)
+	name, _ := sessionMgr.GetSessionVal(sessionID, "session_username")
+	return name
+}
+// 登录用户，管理员身份验证
+func userAuth(w http.ResponseWriter, r *http.Request)(bool){
+	operator := getUserName(w, r)
+	if operator != "admin" {
+		return false
+	}
+	return true
+}
+
+
+
+// 判断当前管理员用户，今日CA删除接口调用是否达到最大次数
+func IsMaxDelCaByUser(userName string)(bool){
+	// 根据用户名字和时间，查找用户删除次数数据库
+	// 没有数据，则新建数据初始化，并插入数据到数据库
+	dc, err := mongodb.Db_handler.GetDelBindConutByName(userName)
+	// 找不到数据，报错，属于今日第一次调用删除手机号绑定接口
+	if err != nil{
+		dc.UserName = userName
+		dc.Date = time.Now()
+		dc.AcCounter = 0
+		dc.CaCounter = 1
+		err := mongodb.Db_handler.InsertDelBindConut(dc)
+		if err != nil {
+			logger.Error("del bind fail in InsertDelBindConut, %s", err.Error())
+		}
+		return true
+	}else{
+		// 如果找到数据，那么判断用户数据的删除次数，没有超过指定次数则返回成功
+		if dc.CaCounter >= *config.OpsDelBindDayCount {
+			logger.Error("this user(name:%s) can be del ,because del bind max %d times a day!", userName, *config.OpsDelBindDayCount)
+			return false
+		}
+		oldDate := dc.Date
+		dc.Date = time.Now()
+		dc.CaCounter = dc.CaCounter + 1
+		err := mongodb.Db_handler.UpdateDelBindConut(dc, oldDate)
+		if err != nil {
+			logger.Error("del bind fail in UpdateDelBindConut, %s", err.Error())
+		}
+		return true
+	}
+}
+// 判断当前管理员用户，今日AC删除接口调用是否达到最大次数
+func IsMaxDelAcByUser(userName string)(bool){
+	// 根据用户名字和时间，查找用户删除次数数据库
+	// 没有数据，则新建数据初始化，并插入数据到数据库
+	dc, err := mongodb.Db_handler.GetDelBindConutByName(userName)
+	// 找不到数据，报错，属于今日第一次调用删除手机号绑定接口
+	if err != nil{
+		dc.UserName = userName
+		dc.Date = time.Now()
+		dc.AcCounter = 1
+		dc.CaCounter = 0
+		err := mongodb.Db_handler.InsertDelBindConut(dc)
+		if err != nil {
+			logger.Error("del bind fail in InsertDelBindConut, %s", err.Error())
+		}
+		return true
+	}else{
+		// 如果找到数据，那么判断用户数据的删除次数，没有超过指定次数则返回成功
+		if dc.AcCounter >= *config.OpsDelBindDayCount {
+			logger.Error("this user(name:%s) can be del ,because del bind max %d times a day!", userName, *config.OpsDelBindDayCount)
+			return false
+		}
+		oldDate := dc.Date
+		dc.Date = time.Now()
+		dc.AcCounter = dc.AcCounter + 1
+		err := mongodb.Db_handler.UpdateDelBindConut(dc, oldDate)
+		if err != nil {
+			logger.Error("del bind fail in UpdateDelBindConut, %s", err.Error())
+		}
+		return true
+	}
+}
+//判断当前管理员用户，今日Phone删除接口调用是否达到最大次数
+func IsMaxDelPhoneByUser(userName string)(bool){
+	// 根据用户名字和时间，查找用户删除次数数据库
+	// 没有数据，则新建数据初始化，并插入数据到数据库
+	dc, err := mongodb.Db_handler.GetDelBindConutByName(userName)
+	// 找不到数据，报错，属于今日第一次调用删除手机号绑定接口
+	if err != nil{
+		dc.UserName = userName
+		dc.Date = time.Now()
+		dc.AcCounter = 0
+		dc.CaCounter = 0
+		dc.PhoneCounter = 1
+		err := mongodb.Db_handler.InsertDelBindConut(dc)
+		if err != nil {
+			logger.Error("del bind fail in InsertDelBindConut, %s", err.Error())
+		}
+		return true
+	}else{
+		// 如果找到数据，那么判断用户数据的删除次数，没有超过指定次数则返回成功
+		if dc.AcCounter >= *config.OpsDelBindDayCount {
+			logger.Error("this user(name:%s) can be del ,because del bind max %d times a day!", userName, *config.OpsDelBindDayCount)
+			return false
+		}
+		oldDate := dc.Date
+		dc.Date = time.Now()
+		dc.PhoneCounter = dc.PhoneCounter + 1
+		err := mongodb.Db_handler.UpdateDelBindConut(dc, oldDate)
+		if err != nil {
+			logger.Error("del bind fail in UpdateDelBindConut, %s", err.Error())
+		}
+		return true
+	}
+}
